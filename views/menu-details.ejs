@@ -1,0 +1,16 @@
+<%- include('partials/header') %>
+<%- include('partials/nav') %>
+<link rel="stylesheet" href="/css/menu-details.css">
+
+<div class="menu-details-container">
+    <div class="menu-details-img">
+        <img src="<%= menu.img %>" alt="<%= menu.name %> Image">
+    </div>
+    <div class="menu-details-info">
+        <h1><%= menu.name %></h1>
+        <p><%= menu.description %></p>
+        <p class="menu-price">Price: $<%= menu.price %></p>
+    </div>
+</div>
+
+<%- include('partials/footer') %>

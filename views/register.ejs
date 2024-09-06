@@ -1,0 +1,78 @@
+<%- include('partials/header') %>
+<%- include('partials/nav') %>
+<link rel="stylesheet" href="/css/register.css">
+<link rel="stylesheet" href="/css/footer.css">
+<title><%= page_title %></title>
+<div class="main-content">
+    <div class="form-container">
+      <h2>Create an Account</h2>
+      <form action="/users" method="post" id="register_form">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required placeholder="Enter your username">
+          <div class="username error" style="color: red;"></div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="Enter your email">
+          <div class="email error" style="color: red;"></div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required placeholder="Enter your password">
+          <div class="password error" style="color: red;"></div>
+        </div>
+        <div class="form-group">
+          <button type="submit">Register</button>
+        </div>
+      </form>
+      <div class="form-footer">
+        <p>Already have an account? <a href="/login">Login here</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const register_form = document.getElementById("register_form");
+    const usernameError = document.querySelector(".username.error");
+    const emailError = document.querySelector(".email.error");
+    const passwordError = document.querySelector(".password.error");
+    register_form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        let username = document.getElementById("username").value;
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+
+        try{
+            let res = await fetch("/users", {
+                method: "POST",
+                headers: { "Content-Type" : "application/json" },
+                body: JSON.stringify({
+                    username, email, password
+                })
+            });
+            if (res.status == 201 ) {
+                location.assign("/");
+            }
+            else{
+                let data = await res.json();
+                if(data.errors) {
+                    console.log(data.errors);
+                    let errors = data.errors;
+                    usernameError.textContent = errors.username ? errors.username : "";
+                    emailError.textContent = errors.email ? errors.email : "";
+                    passwordError.textContent = errors.password ? errors.password : ""
+                }
+            }
+        }
+        catch (err) {
+            console.log("Something went wrong");
+            console.log(err)
+        }
+    });
+</script>
+
+  <div class="footer-bottom">
+    <p>&copy; 2024 Cafe Shop. All Rights Reserved.</p>
+  </div>
+

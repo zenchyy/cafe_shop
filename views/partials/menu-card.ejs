@@ -1,0 +1,19 @@
+<div class="card">
+    <div class="card-img-container">
+        <img src="<%= menus.img %>" class="card-img" alt="Product Image">
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">
+            <%= menus.name %>
+        </h5>
+        <p class="card-text">
+            <%= menus.description %>
+        </p>
+        <p class="card-price">
+            $<%= menus.price %>
+        </p>
+        <p class="card-view">
+            <a href="/menu/<%= menus._id %>/details" class="view-btn">View</a>
+        </p>
+    </div>
+</div>

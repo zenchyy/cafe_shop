@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/nav.css">
+  <title>Cafe Shop Navigation</title>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="/" class="nav-brand">87's</a>
+      <div class="nav-menu" id="nav-menu">
+        <a href="/">Home</a>
+        <a href="/menu">Menu</a>
+        <a href="/about">About Us</a>
+        <a href="/contact">Contact</a>
+      </div>
+      <% if (page_title=='Menu') { %>
+        <form id="search_bar">
+          <input type="text" name="keyword" id="search-bar" placeholder="Search Menu...">
+          <button id="search-btn">Search</button>
+        </form>
+      <% } %>
+      <div class="nav-user-container">
+        <% if (!locals.user) { %>
+          <a href="/login" id="login-btn" class="btn" role="button">Log In</a>
+        <% } else { %>
+          <div class="addmenu">
+            <% if (user.role == "admin") { %>
+              <a href="/add-menu" id="addmenu-btn" class="btn" role="button">Add Menu</a>
+            <% } %>
+          </div>
+          <div class="username-dropdown">
+            <span class="username">Welcome, <%= user.username %></span>
+            <div class="dropdown-content">
+              <form id="logout-form" action="/logout" method="POST">
+                <button type="submit">Log Out</button>
+              </form>
+            </div>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </nav>
+
+  <!-- <script>
+    // Optional: If you're using cookies to store JWT
+    document.getElementById('logout-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.cookie = "jwt=; Max-Age=0; path=/";
+      window.location.href = '/login';
+    });
+  </script> -->
+</body>
+</html>

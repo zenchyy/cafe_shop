@@ -1,0 +1,65 @@
+<%- include('partials/header') %>
+<%- include('partials/nav') %>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:wght@400;600&display=swap">
+<link rel="stylesheet" href="/css/register.css">
+<link rel="stylesheet" href="/css/footer.css">
+<div class="main-content">
+    <div class="form-container">
+      <h2>Add New Menu</h2>
+      <form id="add_menu_form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required placeholder="Enter your menu name">
+          <div class="menu name error" style="color: red;"></div>
+        </div>
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input type="number" id="price" name="price" required placeholder="Enter the price" step="0.01">
+          <div class="Price error" style="color: red;"></div>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" id="description" name="description" required placeholder="Enter the description">
+          <div class="Description error" style="color: red;"></div>
+        </div>
+        <div class="form-group">
+            <label for="image">Image</label>
+            <input type="url" id="image" name="image" required placeholder="Add Image's URL">
+            <div class="Image's URL error" style="color: red;"></div>
+          </div>
+        <div class="form-group">
+          <button type="submit">Add Menu</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("add_menu_form");
+    form.addEventListener("submit", async(e)=>{
+        e.preventDefault();
+
+        let name = document.getElementById("name").value;
+        let price = document.getElementById("price").value;
+        let description = document.getElementById("description").value;
+        let img = document.getElementById("image").value;
+        try{
+            let res = await fetch("/menu", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    name,
+                    price,
+                    description,
+                    img
+                })
+            })
+            if(res.status==201){
+                alert("Menu Added Successfully");
+                form.reset();
+            }
+        }catch(err) {
+            alert("Something went wrong")
+        }
+    })
+  </script>

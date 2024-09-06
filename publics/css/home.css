@@ -1,0 +1,176 @@
+body{
+    background-color: #f5f5f5;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Container for the image and overlay text */
+.image-container {
+    position: relative;
+    width: 100%;
+    max-height: 500px; /* Adjust the height as needed */
+    overflow: hidden; /* Ensures that the image does not overflow the container */
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    display: block; /* Ensures no extra space around the image */
+    object-fit: cover; /* Covers the container without distortion */
+}
+
+.welcome-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #f8f4e1;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners for the text container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Soft shadow for depth */
+}
+
+.welcome-text h1 {
+    font-size: 3em; /* Adjust size as needed */
+    margin-bottom: 10px;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold; /* Bold for emphasis */
+}
+
+.welcome-text p {
+    font-size: 1.5em; /* Adjust size as needed */
+    font-family: 'Arial', sans-serif;
+    font-weight: normal; /* Normal weight for readability */
+}
+
+/* About Us Section */
+.about-us {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 20px; /* Adjust padding as needed */
+    max-width: 1200px; /* Max width for better alignment */
+    margin: 100px auto; /* Center the section */
+    gap: 20px; /* Space between text and image */
+    background-color: #f9f9f9; /* Light background color for contrast */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.about-text {
+    flex: 1;
+    max-width: 500px; /* Limit text width for readability */
+}
+
+.about-text h2 {
+    font-size: 2.5em; /* Adjust size as needed */
+    color: #333; /* Dark color for text */
+    margin-bottom: 15px;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold; /* Emphasize heading */
+}
+
+.about-text p {
+    font-size: 1.2em; /* Adjust size as needed */
+    color: #666; /* Medium color for text */
+    line-height: 1.6; /* Line height for readability */
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif; /* Simple, clean font */
+}
+
+.about-us-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    color: #f8f4e1;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none; /* Remove underline from the link */
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.about-us-btn:hover {
+    color: #a86d3a;
+    transform: translateY(-3px); /* Lift effect on hover */
+}
+
+.about-img {
+    flex: 1;
+    max-width: 600px; /* Limit image width */
+}
+
+.about-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* Rounded corners for the image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    object-fit: cover; /* Ensure the image covers the area nicely */
+}
+
+/* Menu Section */
+.menu-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 800px; /* Adjust max width as needed */
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #fff; /* White background for each card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden; /* Ensure no overflow */
+    padding: 10px;
+}
+
+.menu-item:nth-child(even) {
+    flex-direction: row-reverse; /* Reverse order for even items */
+}
+
+.menu-img {
+    width: 50%;
+    height: auto; /* Automatically adjust height */
+    object-fit: cover; /* Ensures the image covers the area nicely */
+    border-radius: 5px; /* Rounded corners for the image */
+}
+
+.menu-text {
+    padding: 20px;
+    width: 50%;
+}
+
+.menu-text h3 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.menu-text p{
+    margin-top: 10px;
+    font-size: 1em;
+    color: #666;
+    line-height: 1.4;
+}
+
+.view-more-button {
+    margin-top: 30px;
+    padding: 12px 24px;
+    background-color: #333;
+    color: #f8f4e1;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.view-more-button:hover {
+    color: #a86d3a;
+    transform: scale(1.05);
+}

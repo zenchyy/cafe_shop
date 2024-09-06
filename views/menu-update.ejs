@@ -1,0 +1,65 @@
+<%- include('partials/header') %>
+<%- include('partials/nav') %>
+<link rel="stylesheet" href="/css/register.css">
+<link rel="stylesheet" href="/css/footer.css">
+<div class="main-content">
+    <div class="form-container">
+      <h2>Update Menu</h2>
+      <form id="update_menu_form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="update-name" name="name" required value="<%= menu.name %>">
+          <div class="menu name error" style="color: red;"></div>
+        </div>
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input type="number" id="update-price" name="price" required step="0.01" value="<%= menu.price %>">
+          <div class="Price error" style="color: red;"></div>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" id="update-description" name="description" required value="<%= menu.description %>">
+          <div class="Description error" style="color: red;"></div>
+        </div>
+        <div class="form-group">
+            <label for="image">Image</label>
+            <input type="url" id="update-image" name="image" required  value="<%= menu.img %>">
+            <div class="Image's URL error" style="color: red;"></div>
+          </div>
+        <div class="form-group">
+          <button type="submit" id="submit_btn" data-id="<%= menu._id %>">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("update_menu_form");
+    form.addEventListener("submit", async(e)=>{
+        e.preventDefault();
+
+        let id = document.getElementById("submit_btn").attributes["data-id"].value;
+        let name = document.getElementById("update-name").value;
+        let price = document.getElementById("update-price").value;
+        let description = document.getElementById("update-description").value;
+        let img = document.getElementById("update-image").value;
+        try{
+            let res = await fetch(`/menu/${id}`,{
+                method: "PUT",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    name,
+                    price,
+                    description,
+                    img
+                })
+            })
+            if(res.status == 200){
+              alert("Menu Updated Successfully");
+              window.location.href = `/menu/${id}/update`;
+            }
+        }catch(err) {
+            alert("Something went wrong")
+        }
+    })
+  </script>

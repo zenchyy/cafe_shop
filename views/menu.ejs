@@ -1,0 +1,76 @@
+<%- include('partials/header') %>
+<%- include('partials/nav') %>
+<link rel="stylesheet" href="/css/menu.css">
+
+<style>
+    .sorry-container{
+        display: flex;
+        justify-content: center; /* Horizontally centers the content */
+        align-items: center; /* Vertically centers the content */
+        min-height: 60.3vh;
+    }
+
+    .info-sorry {
+        text-align: center; /* Center-aligns the text inside the element */
+        color: #a86d3a; /* A warm color to match the café theme */
+        font-size: 24px;
+        font-weight: bold;
+        background-color: #f4f4f4;
+        padding: 20px;
+        border: 2px solid #a86d3a;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+</style>
+
+<div class="container">
+    <% if (locals.menu) { %>
+        <div class="menu-intro">
+            <div class="intro-img-container">
+              <img src="https://themes.muffingroup.com/be/cafe3/wp-content/uploads/2020/02/cafe3-subheader1.jpg" alt="Cafe Menu Intro" class="intro-img">
+              <div class="intro-text">
+                <h1>Enjoy the real taste of the coffee</h1>
+                <p>We are open every day 8 AM - 9 PM</p>
+              </div>
+            </div>
+          </div>
+        <%- include('partials/selection-section', {selection: menu}) %>
+    <% } else { %>
+        <div class="sorry-container">
+            <h2 class="info-sorry">
+                Sorry, we currently don't have any food available.
+            </h2>
+        </div>
+    <% } %>
+</div>
+
+<script>
+    const search_bar = document.getElementById("search_bar");
+    search_bar.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if(search_bar.keyword.value == "") {
+            location.reload();
+            return;
+        }
+        let keyword = encodeURIComponent(search_bar.keyword.value);
+        try{
+            let response = await fetch(`/find-menu?keyword=${keyword}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        if(response.status == 200) {
+            response.json().then(data => {
+                // console.log(data)
+                document.querySelector(".container").innerHTML=data.html
+            }).catch(err => console.log(err))
+        }
+        }catch(err){
+            console.log(err)
+        }
+    })
+</script>
+
+<!-- <%- include('partials/footer') %> -->

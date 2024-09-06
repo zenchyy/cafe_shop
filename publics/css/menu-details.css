@@ -1,0 +1,39 @@
+.menu-details-container {
+    display: flex;
+    max-width: 1100px;
+    margin: 112px auto;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #f8f4e1;
+    border-radius: 8px;
+}
+
+.menu-details-img {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.menu-details-img img {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.menu-details-info {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.menu-details-info h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.menu-details-info p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #666;
+}
